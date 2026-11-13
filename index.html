@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Page settings and linked files -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+      Recall
+    </title>
+     <!-- Links the CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- periodic table link-->
+    <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/" }
+    }
+
+    </script> 
+    
+  </head>
+  <body>
+    <!-- Page heading and number of matching recalls -->
+    <header>
+      <div>
+        <h1>FDA Recall</h1>
+
+        <p>
+          Search official Food and Drug Administration recall reports for drugs,
+          medical devices and food. 
+        </p>
+      </div>
+
+      <div class="totalRecalls">
+        <span class="largeNumber" id="totalRecalls">0</span>
+        <span>Matching Recalls</span>
+      </div>
+    </header>
+
+    <!-- Periodic table animation appears near the top of the website. -->
+    <section
+      class="periodicTableSection"
+      aria-labelledby="periodicTableTitle"
+    >
+      <h2 id="periodicTableTitle">Interactive Periodic Table</h2>
+      <div id="periodicTableContainer"></div>
+      <div id="periodicTableMenu">
+        <button id="showPeriodicTable" type="button">Table</button>
+        <button id="showPeriodicSphere" type="button">Sphere</button>
+        <button id="showPeriodicHelix" type="button">Helix</button>
+        <button id="showPeriodicGrid" type="button">Grid</button>
+      </div>
+    </section>
+
+    <!-- Search form -->
+    <form id="recallSearchForm">
+      <label>
+        Product type
+
+        <select id="productType">
+          <option value="food" selected>Food</option>
+          <option value="drug">Drugs</option>
+          <option value="device">Medical devices</option>
+        </select>
+      </label>
+
+      <label>
+        Search term
+        <input
+          type="search"
+          id="searchTerm"
+          placeholder="For example: aspirin, pacemaker or frozen vegetables"
+          autocomplete="off">
+        </label>
+
+        <label>
+        Recall class
+
+        <select id="recallClass">
+          <option value="">All classes</option>
+          <option value="Class I">Class I </option>
+          <option value="Class II">Class II</option>
+          <option value="Class III">Class III</option>
+        </select>
+      </label>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- Message showing the current loading or search status -->
+    <div class="statusTools">
+      <p id="searchStatus" role="status">
+        Loading the latest recalls…
+      </p>
+    </div>
+
+    <!-- List of recall results -->
+    <ul id="recallCards"></ul>
+
+    <!-- Button for loading additional results -->
+    <button
+      class="loadMoreButton"
+      id="loadMoreButton"
+      hidden >
+      Load more
+    </button>
+
+    <!-- Error message -->
+    <p class="errorMessage"
+       id="errorMessage"
+       role="alert"
+       hidden>
+    </p>
+
+    <!-- Pop-up window showing recall details -->
+    <dialog
+      id="recallDetailsDialog"
+      aria-labelledby="recallDetailsTitle"
+    >
+      <div class="recallDetailsHeader">
+        <h2 id="recallDetailsTitle"></h2>
+
+        <button
+          type="button"
+          id="closeDetailsButton">
+          Close
+        </button>
+      </div>
+
+      <dl id="recallDetailsBody"></dl>
+
+      <p class="dataWarning">
+        Data from the open Food and Drug Administration database. The Food and
+        Drug Administration notes that this data has not been validated for
+        clinical use. Do not use it to make medical decisions.
+      </p>
+    </dialog>
+
+    <!-- links JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script type="module" src="periodic-table.js"></script>
+  </body>
+</html>

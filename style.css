@@ -1,0 +1,413 @@
+/* Color variables and spacing */
+:root {
+  --pageBackgroundColor: #eef2f6;
+  --textColor: #1b2733;
+
+  --classOneColor: #c0272d;
+  --classTwoColor: #b97500;
+  --classThreeColor: #3a6ea5;
+
+  --borderColor: #c5d0db;
+  --pageSpacing: clamp(12px, 18px, 24px);
+}
+
+/* Basic page styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pageBackgroundColor);
+  color: var(--textColor);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  font-family: "Barlow", system-ui, sans-serif;
+}
+
+h1,
+h2,
+.largeNumber {
+  margin: 0;
+  line-height: 1;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+}
+
+/* Keeps hidden elements hidden */
+[hidden] {
+  display: none !important;
+}
+
+/* Page header */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--pageSpacing);
+  padding: var(--pageSpacing);
+  background: var(--textColor);
+  color: #fff;
+}
+
+h1 {
+  font-size: clamp(42px, 18px, 88px);
+  font-weight: 700;
+}
+header p {
+  max-width: 40ch;
+  margin: 8px 0 0;
+  color: #cfd9e3;
+}
+
+/* Recall count */
+.totalRecalls {
+  text-align: right;
+}
+
+.largeNumber {
+  display: block;
+  font-size: clamp(42px, 18px, 88px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Search: product, term, class */
+#recallSearchForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: center;
+  gap: 10px var(--pageSpacing);
+  padding: var(--pageSpacing);
+  border-bottom: 1px solid var(--borderColor);
+}
+
+#recallSearchForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#recallSearchForm input,
+#recallSearchForm select {
+  min-width: 160px;
+  padding: 9px 12px;
+  border: 2px solid var(--textColor);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--textColor);
+  font: inherit;
+}
+
+#recallSearchForm input[type="search"] {
+  min-width: 400px;
+  max-width: 100%;
+}
+
+#recallSearchForm button {
+  padding: 10px 22px;
+  border: 2px solid var(--textColor);
+  border-radius: 4px;
+  background: var(--textColor);
+  color: #fff;
+  cursor: pointer;
+  font: 600 16px "Barlow", sans-serif;
+}
+
+/* Search status message */
+.statusTools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px var(--pageSpacing) 0;
+}
+
+#searchStatus {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Recall card grid */
+#recallCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: var(--pageSpacing);
+  margin: 0;
+  padding: var(--pageSpacing);
+  list-style: none;
+}
+
+#recallCards button {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--borderColor);
+  border-left: 8px solid
+    var(--recallClassColor, var(--classThreeColor));
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+#recallCards button:hover {
+  background: #f8fafc;
+  box-shadow: 0 2px 0 var(--recallClassColor);
+}
+
+/* Recall class label */
+.recallClassBadge {
+  align-self: start;
+  padding: 2px 10px;
+  border-radius: 99px;
+  background: var(--recallClassColor);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Recall card text */
+.companyName {
+  font: 700 22px/1.1 "Barlow Condensed", sans-serif;
+}
+
+.productDescription {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.recallMetadata {
+  margin: 0;
+  color: #4a5b6b;
+  font-size: 14px;
+}
+
+/* Load more button */
+.loadMoreButton {
+  display: block;
+  margin: 0 auto var(--pageSpacing);
+  padding: 10px 28px;
+  border: 2px solid var(--textColor);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font: 600 16px "Barlow", sans-serif;
+}
+
+/* Recall details dialog */
+#recallDetailsDialog {
+  width: min(680px, 94vw);
+  max-height: 88vh;
+  padding: 0;
+  border: 3px solid var(--textColor);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--textColor);
+}
+
+#recallDetailsDialog::backdrop {
+  background: rgba(27, 39, 51, 0.65);
+}
+
+/* Dialog header */
+.recallDetailsHeader {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--recallClassColor, var(--textColor));
+  color: #fff;
+}
+
+.recallDetailsHeader h2 {
+  font-size: 32px;
+}
+
+.recallDetailsHeader button {
+  padding: 6px 12px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Recall details list */
+#recallDetailsBody {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 16px;
+  margin: 0;
+  padding: 4px 20px 20px;
+}
+
+#recallDetailsBody dt {
+  font-weight: 600;
+}
+
+#recallDetailsBody dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Data warning and error message */
+.dataWarning {
+  margin: 0;
+  padding: 0 20px 18px;
+  color: #4a5b6b;
+  font-size: 14px;
+}
+
+.errorMessage {
+  margin: 0;
+  padding: 0 var(--pageSpacing) var(--pageSpacing);
+  font-weight: 600;
+}
+
+/* Periodic table animation section */
+.periodicTableSection {
+  position: relative;
+  min-height: 720px;
+  margin-top: var(--pageSpacing);
+  padding: var(--pageSpacing);
+  overflow: hidden;
+  background: #07151c;
+  color: #fff;
+}
+
+#periodicTableTitle {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: rgba(127, 255, 255, 0.9);
+}
+
+#periodicTableContainer {
+  position: relative;
+  width: 100%;
+  height: 620px;
+}
+
+/* Styles for the individual elements created by periodic-table.js */
+#periodicTableContainer .element {
+  width: 120px;
+  height: 160px;
+  border: 1px solid rgba(127, 255, 255, 0.25);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  font-family: Helvetica, sans-serif;
+  line-height: normal;
+  text-align: center;
+  cursor: default;
+}
+
+#periodicTableContainer .element:hover {
+  border: 1px solid rgba(127, 255, 255, 0.75);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.75);
+}
+
+#periodicTableContainer .number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: rgba(127, 255, 255, 0.75);
+  font-size: 12px;
+}
+
+#periodicTableContainer .symbol {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  left: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 60px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+}
+
+#periodicTableContainer .details {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+  left: 0;
+  color: rgba(127, 255, 255, 0.75);
+  font-size: 12px;
+}
+
+/* Periodic table controls */
+#periodicTableMenu {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+}
+
+#periodicTableMenu button {
+  margin: 4px;
+  padding: 6px 12px;
+  border: 1px solid rgba(127, 255, 255, 0.75);
+  outline: none;
+  background: transparent;
+  color: rgba(127, 255, 255, 0.9);
+  cursor: pointer;
+  font: inherit;
+}
+
+#periodicTableMenu button:hover {
+  background: rgba(0, 255, 255, 0.4);
+}
+
+#periodicTableMenu button:active {
+  background: rgba(0, 255, 255, 0.75);
+  color: #000;
+}
+
+/* Keyboard focus */
+:focus-visible {
+  outline: 3px solid var(--classThreeColor);
+  outline-offset: 2px;
+}
+
+/* Mobile layout */
+@media (max-width: 560px) {
+  .totalRecalls {
+    text-align: left;
+  }
+
+  #recallDetailsBody {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  #recallDetailsBody dd {
+    margin-bottom: 8px;
+  }
+
+  .periodicTableSection {
+    min-height: 560px;
+  }
+
+  #periodicTableContainer {
+    height: 460px;
+    transform: scale(0.62);
+    transform-origin: top center;
+  }
+}

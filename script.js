@@ -12,16 +12,16 @@ const {
 } = anime;
 
 
-// Page elements
-const matchingRecallsCountElement = document.getElementById("totalRecalls");     // big animated number: how many recalls match the search (e.g. 28,000)
-const recallSearchForm = document.getElementById("recallSearchForm");    // the search form
-const productTypeElement = document.getElementById("productType");       // dropdown: food / drug / device
-const searchTermElement = document.getElementById("searchTerm");         // text box for keywords
-const recallClassElement = document.getElementById("recallClass");       // dropdown: Class I / II / III
-const searchStatusElement = document.getElementById("searchStatus");     // "Loading…" / "Showing X of Y"
-const recallCardsElement = document.getElementById("recallCards");       // list that holds the cards
-const loadMoreButton = document.getElementById("loadMoreButton");        // button to load the next page
-const errorMessageElement = document.getElementById("errorMessage");     // area for error text
+// Page elements 
+const matchingRecallsCountElement = document.getElementById("totalRecalls");    
+const recallSearchForm = document.getElementById("recallSearchForm");   
+const productTypeElement = document.getElementById("productType");       
+const searchTermElement = document.getElementById("searchTerm");         
+const recallClassElement = document.getElementById("recallClass");       
+const searchStatusElement = document.getElementById("searchStatus");     
+const recallCardsElement = document.getElementById("recallCards");       
+const loadMoreButton = document.getElementById("loadMoreButton");       
+const errorMessageElement = document.getElementById("errorMessage");     
 
 // Elements for the details popup 
 const recallDetailsDialog = document.getElementById(

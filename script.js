@@ -107,7 +107,7 @@ function formatDate(date) {
   });
 }
 
-// Creates the web address used to request recall information
+// Creates the web address based on search choices
 function buildRecallRequestUrl() {
   const searchConditions = [];
   if (currentSearch.searchTerm) {
@@ -119,8 +119,6 @@ function buildRecallRequestUrl() {
       `(product_description:${encodedSearchTerm}+OR+reason_for_recall:${encodedSearchTerm})`
     );
   }
-
-  // Class filter: only recalls with the chosen classification
   if (currentSearch.recallClass) {
     const encodedRecallClass = encodeURIComponent(
       `"${currentSearch.recallClass}"`
@@ -130,7 +128,7 @@ function buildRecallRequestUrl() {
       `classification:${encodedRecallClass}`
     );
   }
-
+  //combine filters for req
   const searchQuery = searchConditions.length
     ? `search=${searchConditions.join("+AND+")}&`
     : "";
@@ -146,7 +144,7 @@ function buildRecallRequestUrl() {
 }
 
 
-// Loads/fetches recall information from the Food and Drug Administration.
+// Loads/fetches recall information from the Food and Drug Administration
 async function loadRecalls(appendResults) {
   // Show a loading message
   errorMessageElement.hidden = true;
